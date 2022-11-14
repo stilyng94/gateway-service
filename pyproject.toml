@@ -1,0 +1,63 @@
+[tool.poetry]
+name = "gateway-service"
+version = "0.1.0"
+description = "Gateway service for microservice tutorial"
+authors = ["Your Name <oseipaulkofi@gmail.com>"]
+readme = "README.md"
+packages = [{include = "gateway_service"},{include = "gateway_service/py.typed"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+flask = "^2.2.2"
+flask-sqlalchemy = "^3.0.2"
+flask-session = "^0.4.0"
+redis = "^4.3.4"
+hiredis = { version = "^1.0.2", optional = true}
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.2.0"
+flake8 = "^5.0.4"
+autopep8 = "^2.0.0"
+mypy = "^0.971"
+
+[tool.poetry.extras]
+redis_addon = ["hiredis"]
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.isort]
+py_version = 311
+force_single_line = true
+combine_as_imports = true
+lines_between_types = 1
+lines_after_imports = 2
+src_paths = ["src", "tests"]
+known_third_party = ["poetry.core"]
+
+[tool.poetry.scripts]
+
+
+[tool.mypy]
+mypy_path = "src"
+files = "src"
+warn_return_any = true
+warn_unused_configs = true
+check_untyped_defs = true
+disallow_any_generics = true
+ignore_missing_imports = true
+no_implicit_optional = true
+show_error_codes = true
+strict_equality = true
+warn_reduntant_casts = true
+warn_unreachable = true
+no_implicit_reexport = true
+
+[tool.autopep8]
+max_line_length = 120
+ignore = "E501,W6"  # or ["E501", "W6"]
+in-place = true
+recursive = true
+aggressive = 3
